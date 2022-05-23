@@ -1,0 +1,9 @@
+<dx-data-grid [dataSource]="rows"
+              dataRowTemplate="dataRowTemplateName">
+  <dxi-column *ngFor="let col of columns" [caption]="col.label"></dxi-column>
+
+  <ng-container *dxTemplate="let dataRow of 'dataRowTemplateName'">
+    <ng-container *ngTemplateOutlet="rowTemplate; context: { $implicit: dataRow.data }">
+    </ng-container>
+  </ng-container>
+</dx-data-grid>

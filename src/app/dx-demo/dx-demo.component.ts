@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import notify from 'devextreme/ui/notify';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { IGridColumn } from '../grid/grid.component';
 
 @Component({
   selector: 'app-dx-demo',
@@ -7,21 +7,30 @@ import notify from 'devextreme/ui/notify';
   styleUrls: ['./dx-demo.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DxDemoComponent {
-  items: any;
+export class DxDemoComponent implements OnInit {
+  rows: ITestRow[] = [];
+  columns: IGridColumn[] = [];
 
-  constructor() {
-    this.items = [
-      { text: 'Download' },
-      { text: 'Comment' },
-      { text: 'Favorite' },
+  ngOnInit(): void {
+    this.columns = [
+      { label: 'First Name' },
+      { label: 'Last Name' },
+    ];
+
+    this.rows = [
+      {
+        firstName: 'John',
+        lastName: 'Doe'
+      },
+      {
+        firstName: 'Jack',
+        lastName: 'Black'
+      },
     ];
   }
+}
 
-  itemClick($event: any) {
-    console.log($event);
-    // if (!$event.itemData.items) {
-    //   notify(`The "${$event.itemData.text}" item was clicked`, 'success', 1500);
-    // }
-  }
+export interface ITestRow {
+  firstName: string;
+  lastName: string;
 }

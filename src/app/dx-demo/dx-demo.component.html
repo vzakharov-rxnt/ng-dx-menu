@@ -1,11 +1,10 @@
-<p>dx-demo works!</p>
+<app-grid [rows]="rows"
+          [columns]="columns"
+          [rowTemplate]="rowTemplate"></app-grid>
 
-<div class="label"> Right click below text to show available actions</div>
-<div id="text">Below text <-- click here</div>
-<dx-context-menu
-  [dataSource]="items"
-  [width]="200"
-  target="#text"
-  (onItemClick)="itemClick($event)"
->
-</dx-context-menu>
+<ng-template #rowTemplate let-row>
+  <tr>
+    <td>{{ row.firstName }}</td>
+    <td>{{ row.lastName }}</td>
+  </tr>
+</ng-template>

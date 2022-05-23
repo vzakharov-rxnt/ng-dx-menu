@@ -1,13 +1,16 @@
 ﻿import { DxDemoComponent } from './dx-demo.component';
 import { NgModule } from '@angular/core';
-import { DxContextMenuModule } from 'devextreme-angular';
+import { DxContextMenuModule, DxDataGridModule } from 'devextreme-angular';
+import { GridModule } from '../grid/grid.module';
 
 @NgModule({
   declarations: [
     DxDemoComponent
   ],
   imports: [
-    DxContextMenuModule
+    DxContextMenuModule,
+    DxDataGridModule,
+    GridModule,
   ]
 })
 export class DxDemoModule { }
