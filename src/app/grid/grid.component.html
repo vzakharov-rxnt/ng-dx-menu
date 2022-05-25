@@ -6,4 +6,14 @@
     <ng-container *ngTemplateOutlet="rowTemplate; context: { $implicit: dataRow.data }">
     </ng-container>
   </ng-container>
+
+  <dxo-toolbar>
+    <dxi-item location="after">
+      <div *dxTemplate>
+        <app-grid-child (someEvent)="someEventHandler()"></app-grid-child>
+      </div>
+    </dxi-item>
+  </dxo-toolbar>
 </dx-data-grid>
+
+<!--<app-grid-child (someEvent)="someEventHandler()"></app-grid-child>-->

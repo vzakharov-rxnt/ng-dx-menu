@@ -2,6 +2,7 @@
 import { DxDataGridModule } from 'devextreme-angular';
 import { GridComponent } from './grid.component';
 import { CommonModule } from '@angular/common';
+import { GridChildModule } from '../grid-child/grid-child.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     DxDataGridModule,
-    CommonModule
+    CommonModule,
+    GridChildModule
   ],
   exports: [
     GridComponent,

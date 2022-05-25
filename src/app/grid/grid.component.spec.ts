@@ -4,6 +4,8 @@ import { GridComponent, IGridColumn } from './grid.component';
 import { MockBuilder } from 'ng-mocks';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DxDataGridModule } from 'devextreme-angular';
+import { By } from '@angular/platform-browser';
+import { GridChildComponent } from '../grid-child/grid-child.component';
 
 @Component({
   selector: 'test-container',
@@ -34,7 +36,9 @@ describe('GridComponent', () => {
     return MockBuilder()
       .keep(TestContainer)
       .keep(GridComponent)
-      .keep(DxDataGridModule);
+      .keep(DxDataGridModule)
+
+      .mock(GridChildComponent);
   });
 
   beforeEach(() => {
@@ -46,7 +50,7 @@ describe('GridComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render rows', () => {
+  it('should render rows', async() => {
     component.columns = [
       { label: 'First Name' },
       { label: 'Last Name' },
@@ -63,8 +67,16 @@ describe('GridComponent', () => {
     ];
 
     fixture.detectChanges();
+    await fixture.whenStable();
 
-    // put a breakpoint here, notice only one blank row is rendered
-    const p = 5;
+    const gridChild = fixture.debugElement.query(By.directive(GridChildComponent));
+    const gridChildInstance = gridChild.componentInstance; // TypeError: Cannot read properties of null (reading 'componentInstance')
+
+    const gridInstance = fixture.debugElement.query(By.directive(GridComponent)).componentInstance;
+
+    // example of what could be tested
+    const methodStub = spyOn(gridInstance, 'someFuncToBeCalled');
+    gridChildInstance.someEvent.emit();
+    expect(methodStub).toHaveBeenCalledOnceWith();
   });
 });

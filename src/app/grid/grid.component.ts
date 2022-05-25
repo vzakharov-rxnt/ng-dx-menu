@@ -11,6 +11,14 @@ export class GridComponent {
   @Input() columns: IGridColumn[] = [];
   // @ts-ignore
   @Input() rowTemplate: TemplateRef<any>;
+
+  someEventHandler(): void {
+    this.someFuncToBeCalled();
+  }
+
+  someFuncToBeCalled(): void {
+    // does nothing for demo purposes, suppose it's a service method
+  }
 }
 
 export interface IGridColumn {
